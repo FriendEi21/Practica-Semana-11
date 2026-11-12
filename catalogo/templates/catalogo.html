@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Catálogo de Productos{% endblock %}
+
+{% block content %}
+    <!-- Aplicación del filtro title exigido en el Paso 4 -->
+    <h2>{{ titulo_pagina|title }}</h2>
+
+    {% if productos %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                    <th>Fecha Registro</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prod in productos %}
+                <tr>
+                    <td>{{ prod.nombre|title }}</td>
+                    <td>{{ prod.categoria|title }}</td>
+                    <td>S/ {{ prod.precio }}</td>
+                    <td>{{ prod.stock }} uds.</td>
+                    <td>
+                        {% if prod.stock >= 5 %}
+                            <span class="badge-ok">{{ prod.estado_stock }}</span>
+                        {% else %}
+                            <span class="badge-warn">{{ prod.estado_stock }}</span>
+                        {% endif %}
+                    </td>
+                    <!-- Aplicación del filtro date exigido en el Paso 4 -->
+                    <td>{{ prod.fecha_registro|date:"d/m/Y H:i" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No existen productos disponibles en el catálogo actualmente.</p>
+    {% endif %}
+{% endblock %}

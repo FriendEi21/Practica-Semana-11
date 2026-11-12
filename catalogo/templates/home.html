@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Arquitectura MTV{% endblock %}
+
+{% block content %}
+    <h2>{{ titulo_sistema|title }}</h2>
+    <p>Bienvenido al módulo de persistencia ORM y vistas dinámicas con Django 5.x.</p>
+    <ul>
+        <li><strong>Total de registros en SQLite:</strong> {{ total_productos }}</li>
+        <li><strong>Productos activos con stock:</strong> {{ disponibles }}</li>
+    </ul>
+    <p><a href="{% url 'catalogo' %}">Ir al listado completo del catálogo →</a></p>
+{% endblock %}
